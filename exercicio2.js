@@ -54,3 +54,44 @@ const imagens = [
     }
   ];
 
+  let botaoAntEl = document.querySelector('#anterior');
+  let botaoProxEl = document.querySelector('#proximo');
+  let texto;
+  let imagEl = document.querySelector('#slide');
+  
+  botaoAntEl.addEventListener('click', function anterior(){  
+    for(let i=0 ; i<imagens.length ; i++){
+      texto = servidorDasImagens + '/' + imagens[i].arquivo; 
+      if(texto === imagEl.src ){
+        
+        if(i === 0){
+          imagEl.src = servidorDasImagens + '/' + imagens[7].arquivo;
+          imagEl.alt = imagens[7].descricao;
+          break;
+        }
+        else{
+          imagEl.src = servidorDasImagens + '/' + imagens[i-1].arquivo;
+          imagEl.alt = imagens[i-1].descricao;
+        }
+      }
+      
+    }
+  });
+
+  botaoProxEl.addEventListener('click', function proximo(){
+    for(let i=0 ; i<imagens.length ; i++){
+      texto = servidorDasImagens + '/' + imagens[i].arquivo; 
+      if(texto === imagEl.src ){
+        if(i === 7){
+          imagEl.src = servidorDasImagens + '/' + imagens[0].arquivo;
+          imagEl.alt = imagens[0].descricao;
+        }   
+        else{
+          imagEl.src = servidorDasImagens + '/' + imagens[i+1].arquivo;
+          imagEl.alt = imagens[i+1].descricao;
+          break;
+        }
+      }
+    }
+
+  });
